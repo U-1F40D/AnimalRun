@@ -4,7 +4,7 @@ import 'package:path/path.dart';
 
 import 'animal_object.dart';
 
-const urlPrefix = 'https://10.20.136.134:5000';
+const urlPrefix = 'http://10.20.136.235:5000/classify-animal';
 
 Future<Animal> makePostRequest(image) async {
   Animal animal;
@@ -20,7 +20,11 @@ Future<Animal> makePostRequest(image) async {
   request.files.add(multipartFile);
   var response = await request.send();
   debugPrint(response.reasonPhrase);
-  animal = animalFromJson(response.stream.toString());
+
+  var respStr = await response.stream.bytesToString();
+  debugPrint(respStr);
+
+  animal = animalFromJson(respStr);
 
   return animal;
 }
