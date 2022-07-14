@@ -4,7 +4,8 @@ import 'package:flutter/material.dart';
 
 import 'display_picture_screen.dart';
 
-import 'dart:convert';
+
+import 'services/animal_object.dart';
 
 import 'services/animal_object.dart';
 

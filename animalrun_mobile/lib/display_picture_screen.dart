@@ -1,5 +1,4 @@
 // A widget that displays the picture taken by the user.
-import 'dart:io';
 
 import 'package:animalrun_mobile/custom%20widgets/curiosity_box.dart';
 import 'package:animalrun_mobile/custom%20widgets/quiz_widget.dart';
