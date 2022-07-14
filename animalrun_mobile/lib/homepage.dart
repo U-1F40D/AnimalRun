@@ -4,9 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'display_picture_screen.dart';
 
-
 import 'services/animal_object.dart';
-
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.camera})
@@ -82,6 +80,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Attempting to take a picture and get the file `image`
                   // where it was saved.
                   final image = await _controller.takePicture();
+
                   ///convert xfile to bytes(Uint8List)
                   //List<int> imageBytes = await image.readAsBytes();
                   //debugPrint('\$imageBytes');
@@ -101,7 +100,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'https://ichef.bbci.co.uk/news/640/cpsprodpb/17144/production/_121923549_kush-sarahteare-kermeen2.jpg',
                           question: 'question',
                           answers: ['a', 'b', 'c', 'd'],
-                          correctIndex: 'correctIndex');
+                          correctIndex: 0);
                     },
                   );
 
