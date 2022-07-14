@@ -6,6 +6,8 @@ import 'display_picture_screen.dart';
 
 import 'dart:convert';
 
+import 'services/animal_object.dart';
+
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.camera})
       : super(key: key);
@@ -80,29 +82,42 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Attempting to take a picture and get the file `image`
                   // where it was saved.
                   final image = await _controller.takePicture();
-                  //convert xfile to bytes(Uint8List)
-                  final imageBytes = await image.readAsBytes();
-                  debugPrint('$imageBytes');
-                  //convert from bytes(Uint8List) to String 
-                  String base64Image = base64Encode(imageBytes);
-                  debugPrint(base64Image);
+                  ///convert xfile to bytes(Uint8List)
+                  //List<int> imageBytes = await image.readAsBytes();
+                  //debugPrint('\$imageBytes');
+                  //convert from bytes(Uint8List) to String
+                  //String base64Image = base64Encode(imageBytes);
+                  //debugPrint('debug: \$base64Image');
 
                   //make post request to backend
-                  makePostRequest(base64Image);
+                  Animal animal = await makePostRequest(Image).catchError(
+                    (e) {
+                      debugPrint('debug: ${e.toString()}');
+                      return Animal(
+                          animalName: 'animalName',
+                          extinctionLevel: 'exLevel',
+                          trivia: 'trivia',
+                          imageUrl:
+                              'https://ichef.bbci.co.uk/news/640/cpsprodpb/17144/production/_121923549_kush-sarahteare-kermeen2.jpg',
+                          question: 'question',
+                          answers: ['a', 'b', 'c', 'd'],
+                          correctIndex: 'correctIndex');
+                    },
+                  );
 
                   if (!mounted) return;
 
-                  // If the picture was taken, display it on a new screen.
+                  //remove progress indicator
                   setState(() {
                     capturing = false;
                   });
                   await Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => DisplayPictureScreen(
-                        // Passing the automatically generated path to
-                        // the DisplayPictureScreen widget.
-                        imagePath: image.path,
-                      ),
+                      builder: (context) => DisplayPictureScreen(animal: animal
+                          // Passing the automatically generated path to
+                          // the DisplayPictureScreen widget.
+                          //imagePath: image.path,
+                          ),
                     ),
                   );
                 } catch (e) {

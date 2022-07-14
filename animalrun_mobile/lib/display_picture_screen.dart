@@ -6,11 +6,12 @@ import 'package:animalrun_mobile/custom%20widgets/quiz_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'custom widgets/round_widgets.dart';
+import 'services/animal_object.dart';
 
 class DisplayPictureScreen extends StatelessWidget {
-  final String imagePath;
+  final Animal animal;
 
-  const DisplayPictureScreen({super.key, required this.imagePath});
+  const DisplayPictureScreen({super.key, required this.animal});
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +29,10 @@ class DisplayPictureScreen extends StatelessWidget {
           children: [
             Center(
               heightFactor: (height / 300),
-              child: const Text('Name'),
+              child: Text(animal.animalName),
             ),
-            Center(child: Image.file(File(imagePath))),
+            //image of zoo animal from backend
+            Center(child: Image.network(animal.imageUrl)),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(
@@ -73,9 +75,7 @@ class DisplayPictureScreen extends StatelessWidget {
             ),
             Center(
               heightFactor: (height / 600),
-              child: const CuriosityWidget(
-                  text:
-                      'Short Curiosity: \n Exciting Random Facts About Animal'),
+              child: CuriosityWidget(text: '\n${animal.trivia}'),
             ),
             const Divider(
               color: Colors.black,
@@ -87,7 +87,7 @@ class DisplayPictureScreen extends StatelessWidget {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.of(context).pop();
+          Navigator.pop(context);
         },
         child: const Icon(Icons.cancel),
       ),
