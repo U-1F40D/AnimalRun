@@ -2,7 +2,6 @@
 //
 //     final animal = animalFromJson(jsonString);
 
-import 'package:meta/meta.dart';
 import 'dart:convert';
 
 Animal animalFromJson(String str) => Animal.fromJson(json.decode(str));

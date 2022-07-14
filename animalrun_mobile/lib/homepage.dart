@@ -7,7 +7,6 @@ import 'display_picture_screen.dart';
 
 import 'services/animal_object.dart';
 
-import 'services/animal_object.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.camera})
@@ -91,7 +90,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   //debugPrint('debug: \$base64Image');
 
                   //make post request to backend
-                  Animal animal = await makePostRequest(Image).catchError(
+                  Animal animal = await makePostRequest(image).catchError(
                     (e) {
                       debugPrint('debug: ${e.toString()}');
                       return Animal(
