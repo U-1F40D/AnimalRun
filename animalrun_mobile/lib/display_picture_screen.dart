@@ -80,7 +80,7 @@ class DisplayPictureScreen extends StatelessWidget {
               color: Colors.black,
               thickness: 1,
             ),
-            const QuizWidget(animal: 'animal')
+            QuizWidget(animal: animal)
           ],
         ),
       ),

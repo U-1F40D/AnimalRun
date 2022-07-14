@@ -101,7 +101,7 @@ class _MyHomePageState extends State<MyHomePage> {
                               'https://ichef.bbci.co.uk/news/640/cpsprodpb/17144/production/_121923549_kush-sarahteare-kermeen2.jpg',
                           question: 'question',
                           answers: ['a', 'b', 'c', 'd'],
-                          correctIndex: 'correctIndex');
+                          correctIndex: '1');
                     },
                   );
 
