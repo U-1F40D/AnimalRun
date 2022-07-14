@@ -1,7 +1,10 @@
+import 'package:animalrun_mobile/services/request_handler.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
 import 'display_picture_screen.dart';
+
+import 'dart:convert';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key, required this.title, required this.camera})
@@ -17,7 +20,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   late CameraController _controller;
   late Future<void> _initializeControllerFuture;
-  bool photoCapturing = false;
+  bool capturing = false;
 
   @override
   void initState() {
@@ -62,12 +65,12 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
-      floatingActionButton: photoCapturing
+      floatingActionButton: capturing
           ? const CircularProgressIndicator()
           : FloatingActionButton(
               onPressed: () async {
                 setState(() {
-                  photoCapturing = true;
+                  capturing = true;
                 });
                 // Taking Picture in a try / catch block.
                 try {
@@ -77,12 +80,21 @@ class _MyHomePageState extends State<MyHomePage> {
                   // Attempting to take a picture and get the file `image`
                   // where it was saved.
                   final image = await _controller.takePicture();
+                  //convert xfile to bytes(Uint8List)
+                  final imageBytes = await image.readAsBytes();
+                  debugPrint('$imageBytes');
+                  //convert from bytes(Uint8List) to String 
+                  String base64Image = base64Encode(imageBytes);
+                  debugPrint(base64Image);
+
+                  //make post request to backend
+                  makePostRequest(base64Image);
 
                   if (!mounted) return;
 
                   // If the picture was taken, display it on a new screen.
                   setState(() {
-                    photoCapturing = false;
+                    capturing = false;
                   });
                   await Navigator.of(context).push(
                     MaterialPageRoute(
@@ -95,7 +107,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   );
                 } catch (e) {
                   setState(() {
-                    photoCapturing = false;
+                    capturing = false;
                   });
                   debugPrint('debug: $e');
                 }

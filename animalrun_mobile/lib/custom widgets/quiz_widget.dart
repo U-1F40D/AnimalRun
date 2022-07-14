@@ -5,6 +5,7 @@ class QuizWidget extends StatelessWidget {
     Key? key,
     required this.animal,
   }) : super(key: key);
+  // ignore: prefer_typing_uninitialized_variables
   final animal;
 
   @override
