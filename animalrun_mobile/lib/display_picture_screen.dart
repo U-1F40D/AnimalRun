@@ -4,6 +4,7 @@ import 'package:animalrun_mobile/custom%20widgets/curiosity_box.dart';
 import 'package:animalrun_mobile/custom%20widgets/quiz_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'custom widgets/achievements.dart';
 import 'custom widgets/round_widgets.dart';
 import 'services/animal_object.dart';
 
@@ -19,7 +20,26 @@ class DisplayPictureScreen extends StatelessWidget {
     // ignore: unused_local_variable
     double width = size.width;
     return Scaffold(
-      appBar: AppBar(title: const Text('Display Image')),
+      appBar: AppBar(
+        title: const Text('Display Image'),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Achievements(),
+                    ),
+                  );
+                },
+                child: const Icon(
+                  Icons.task_alt_sharp,
+                  size: 26.0,
+                ),
+              )),
+        ],
+      ),
       // The image is stored as a file on the device. Use the `Image.file`
       // constructor with the given path to display the image.
       body: SingleChildScrollView(

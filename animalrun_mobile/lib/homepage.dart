@@ -2,6 +2,7 @@ import 'package:animalrun_mobile/services/request_handler.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 
+import 'custom widgets/achievements.dart';
 import 'display_picture_screen.dart';
 
 import 'services/animal_object.dart';
@@ -49,6 +50,23 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          Padding(
+              padding: const EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const Achievements(),
+                    ),
+                  );
+                },
+                child: const Icon(
+                  Icons.task_alt_sharp,
+                  size: 26.0,
+                ),
+              )),
+        ],
       ),
       // Wait until the controller is initialized before displaying the
       // camera preview. FutureBuilder to display a loading spinner until the
