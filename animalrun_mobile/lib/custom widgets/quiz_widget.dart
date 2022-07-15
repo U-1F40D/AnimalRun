@@ -19,7 +19,7 @@ class _QuizWidgetState extends State<QuizWidget> {
   Widget build(BuildContext context) {
     Animal animal = widget.animal;
     List<String> answers = animal.answers;
-    int correctIndex = int.parse(animal.correctIndex);
+    int correctIndex = animal.correctIndex;
     return Column(
       children: [
         Container(
