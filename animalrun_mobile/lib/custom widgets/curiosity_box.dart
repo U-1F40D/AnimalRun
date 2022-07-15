@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 class CuriosityWidget extends StatelessWidget {
@@ -17,17 +18,27 @@ class CuriosityWidget extends StatelessWidget {
           child: RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              text: 'Fun Fact',
+              text: 'Fun',
               style: const TextStyle(
-                fontSize: 40,
+                fontSize: 28,
                 fontWeight: FontWeight.bold,
                 color: Colors.blueAccent,
               ),
               children: [
+                const TextSpan(
+                  text: ' Fact:',
+                  style: TextStyle(
+                    fontWeight: FontWeight.normal,
+                    fontFamily: 'Allison',
+                    fontSize: 28.0,
+                  ),
+                ),
                 TextSpan(
                   text: text,
                   style: const TextStyle(
-                    fontSize: 30.0,
+                    fontWeight: FontWeight.normal,
+                    fontStyle: FontStyle.italic,
+                    fontSize: 20.0,
                     color: Colors.black,
                   ),
                 ),

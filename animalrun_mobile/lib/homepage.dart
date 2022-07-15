@@ -58,7 +58,12 @@ class _MyHomePageState extends State<MyHomePage> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             // If the Future is complete, display the preview.
-            return CameraPreview(_controller);
+            return Center(
+              child: CameraPreview(
+                _controller,
+                child: const Text('Team U+1F40D \u{1F40D} '),
+              ),
+            );
           } else {
             // Otherwise, display a loading indicator.
             return const Center(child: CircularProgressIndicator());

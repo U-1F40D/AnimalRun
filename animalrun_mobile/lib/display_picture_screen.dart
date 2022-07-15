@@ -28,7 +28,14 @@ class DisplayPictureScreen extends StatelessWidget {
           children: [
             Center(
               heightFactor: (height / 300),
-              child: Text(animal.animalName),
+              //Name of Zoo animal
+              child: Text(
+                animal.animalName,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 28,
+                ),
+              ),
             ),
             //image of zoo animal from backend
             Center(child: Image.network(animal.imageUrl)),

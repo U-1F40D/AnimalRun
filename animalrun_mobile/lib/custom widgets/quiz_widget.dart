@@ -22,6 +22,7 @@ class _QuizWidgetState extends State<QuizWidget> {
     int correctIndex = animal.correctIndex;
     return Column(
       children: [
+        const Text('Quiz'),
         Container(
           width: double.infinity,
           margin: const EdgeInsets.all(10),
@@ -43,8 +44,8 @@ class _QuizWidgetState extends State<QuizWidget> {
                       return Expanded(
                         child: AlertDialog(
                           title: const Text('Hurray: That was correct'),
-                          content: Image.network(
-                            'https://media4.giphy.com/media/5jT0jaNDsM6Ik7X9yq/200w.gif?cid=82a1493bpon4c4bay4bvli5p4kpqbmemc5uwxpvn63ywmy4d&rid=200w.gif&ct=g',
+                          content: Image.asset(
+                            'assets/images/giphy.gif',
                             scale: 1,
                           ),
                           actions: [
